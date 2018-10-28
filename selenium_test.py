@@ -6,23 +6,23 @@ def test_home():
     driver = webdriver.Chrome()
     driver.get("http://127.0.0.1:8000")
 
-    elem = driver.find_element_by_id("name") 
-    assert elem != None
+    name = driver.find_element_by_id("name") 
+    assert name != None
 
-    elem = driver.find_element_by_id("about") 
-    assert elem != None
+    about = driver.find_element_by_id("about") 
+    assert about != None
 
-    elem = driver.find_element_by_id("education") 
-    assert elem != None
+    education = driver.find_element_by_id("education") 
+    assert education != None
 
-    elem = driver.find_element_by_id("skills") 
-    assert elem != None
+    skills = driver.find_element_by_id("skills") 
+    assert skills != None
 
-    elem = driver.find_element_by_id("work") 
-    assert elem != None
+    work = driver.find_element_by_id("work") 
+    assert work != None
 
-    elem = driver.find_element_by_id("contact") 
-    assert elem != None
+    contact = driver.find_element_by_id("contact") 
+    assert contact != None
 
 if __name__ == "__main__":
     test_home()
