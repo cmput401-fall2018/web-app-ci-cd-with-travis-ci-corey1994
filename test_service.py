@@ -1,16 +1,38 @@
 import unittest
-import mock
+from mock import patch
 from service import Service
 
 class TestService(unittest.TestCase):
     def setUp(self):
         self.service = Service()
 
-    def test_bad_random(self):
-        pass
+    @patch('service.Service.bad_random')
+    def test_bad_random(self, mock_bad_random):
+        mock_bad_random.return_value = 10
 
-    def test_divide(self):
-        pass
+        self.assertEqual(self.service.bad_random(), 10)
+
+    @patch('service.Service.bad_random')
+    def test_divide(self, mock_bad_random):
+        mock_bad_random.return_value = 10
+
+        # Divisor and dividend are positive, divisor smaller
+        self.assertEqual(self.service.divide(5), 2)
+
+        # Divisor and dividend are positive, divisor larger
+        self.assertEqual(self.service.divide(20), 0.5)
+
+        # Divide by 0
+        with self.assertRaises(ZeroDivisionError):
+            self.service.divide(0)
+
+        # Positive dividend and negative divisor
+        self.assertEqual(self.service.divide(-5), -2)
+
+        mock_bad_random.return_value = -10
+
+        # Negative dividend and positive divisor
+        self.assertEqual(self.service.divide(5), -2)
 
     def test_abs_plus(self):
         # Negative

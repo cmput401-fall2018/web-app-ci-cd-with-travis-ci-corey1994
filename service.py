@@ -3,7 +3,7 @@ import random
 class Service():
 
     # returns a random number
-    def bad_random():
+    def bad_random(self):
         file = open('/Users/dchui1/datafile', 'r')
         numberStrings = file.readlines()
         numbers = [int(x) for x in numberStrings]
