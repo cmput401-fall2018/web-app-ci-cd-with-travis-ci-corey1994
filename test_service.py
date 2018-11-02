@@ -58,14 +58,34 @@ class TestService(unittest.TestCase):
         
 
     @patch('service.Service.divide')
-    @patch('service.Servide.bad_random')
+    @patch('service.Service.bad_random')
     def test_complicated_function(self, mock_bad_random, mock_divide):
-        mock_bad_random.return_value = 20
         mock_divide.return_value = 5
 
+        # Sanity test, with even "random" number
+        mock_bad_random.return_value = 20
         (a, b) = self.service.complicated_function(3)
         self.assertEqual(a, 5)
-        self.assertEqual(0)
+        self.assertEqual(b, 0)
+
+        # Odd "random" number
+        mock_bad_random.return_value = 19
+        (a, b) = self.service.complicated_function(3)
+        self.assertEqual(b, 1)
+
+        # Negative even "random" number
+        mock_bad_random.return_value = -20
+        (a, b) = self.service.complicated_function(3)
+        self.assertEqual(b, 0)
+
+        # Negative odd "random" number
+        mock_bad_random.return_value = -19
+        (a, b) = self.service.complicated_function(3)
+        self.assertEqual(b, 1)
+
+        # No argument
+        with self.assertRaises(TypeError):
+            self.service.complicated_function()
 
 if __name__ == "__main__":
     unittest.main()
