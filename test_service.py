@@ -16,10 +16,10 @@ class TestService(unittest.TestCase):
     def test_divide(self, mock_bad_random):
         mock_bad_random.return_value = 10
 
-        # Divisor and dividend are positive, divisor smaller
+        # Divisor and dividend are positive, whole result
         self.assertEqual(self.service.divide(5), 2)
 
-        # Divisor and dividend are positive, divisor larger
+        # Divisor and dividend are positive, fractional result
         self.assertEqual(self.service.divide(20), 0.5)
 
         # Divide by 0
@@ -33,6 +33,10 @@ class TestService(unittest.TestCase):
 
         # Negative dividend and positive divisor
         self.assertEqual(self.service.divide(5), -2)
+
+        # Missing argument
+        with self.assertRaises(TypeError):
+            self.service.divide()
 
     def test_abs_plus(self):
         # Negative
