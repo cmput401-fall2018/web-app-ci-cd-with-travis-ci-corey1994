@@ -57,8 +57,15 @@ class TestService(unittest.TestCase):
             self.service.abs_plus()
         
 
-    def test_complicated_function(self):
-        pass
+    @patch('service.Service.divide')
+    @patch('service.Servide.bad_random')
+    def test_complicated_function(self, mock_bad_random, mock_divide):
+        mock_bad_random.return_value = 20
+        mock_divide.return_value = 5
+
+        (a, b) = self.service.complicated_function(3)
+        self.assertEqual(a, 5)
+        self.assertEqual(0)
 
 if __name__ == "__main__":
     unittest.main()
