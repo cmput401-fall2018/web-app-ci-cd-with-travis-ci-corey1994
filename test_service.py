@@ -81,7 +81,7 @@ class TestService(unittest.TestCase):
         # Negative odd "random" number
         mock_bad_random.return_value = -19
         (a, b) = self.service.complicated_function(3)
-        self.assertEqual(b, 1)
+        self.assertEqual(b, 0)
 
         # No argument
         with self.assertRaises(TypeError):

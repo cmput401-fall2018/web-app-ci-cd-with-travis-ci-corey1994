@@ -6,4 +6,4 @@ install:
 - pip3 install -r requirements.txt
 
 script:
-- python3 test_service.py
+- python3 test_service.py -v
